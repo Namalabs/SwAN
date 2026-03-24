@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SwAN — Swift Advanced Navigation</title>
+  <meta name="description" content="Type-safe multi-stack navigation for SwiftUI Development" />
+  <!-- Docsify built-in theme (includes default search panel styling) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css" />
+  <style>
+    :root {
+      --app-bg: #f6f8fb;
+      --app-surface: #ffffff;
+      --app-text: #1f2937;
+    }
+
+    body {
+      background: var(--app-bg);
+      color: var(--app-text);
+    }
+
+    .sidebar {
+      background: var(--app-surface);
+    }
+
+    .markdown-section {
+      color: var(--app-text);
+    }
+
+    /* Version dropdown (injected by plugin) */
+    .version-select {
+      margin: 0.75rem 1rem 0.5rem;
+      padding: 0.35rem 0.5rem;
+      width: calc(100% - 2rem);
+      font-size: 13px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      background: #fff;
+      box-sizing: border-box;
+    }
+
+    /* Softer search focus — keeps Docsify layout, tones down browser/theme glow */
+    .sidebar .search input:focus {
+      outline: none;
+      box-shadow: inset 0 0 0 1px #42b983;
+    }
+
+    .sidebar .search .clear-button {
+      opacity: 0.55;
+    }
+
+    .sidebar .search .clear-button:hover {
+      opacity: 1;
+    }
+
+    /* Cover: keep same background family for readability */
+    section.cover {
+      background: var(--app-bg);
+      color: var(--app-text);
+      background-attachment: fixed;
+    }
+
+    section.cover .cover-main > p:last-child a {
+      border-radius: 2rem;
+      padding: 0.5rem 1.25rem;
+      margin-right: 0.5rem;
+      color: #1f2937;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    function resolveLatest(hash) {
+      return fetch('versions.json')
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          var latest = data.latest || 'v0.2.0';
+          if (hash && hash.indexOf('#/latest') === 0) {
+            window.location.hash = hash.replace('#/latest', '#/' + latest);
+          }
+          return latest;
+        })
+        .catch(function () { return 'v0.2.0'; });
+    }
+
+    if (window.location.hash.indexOf('#/latest') === 0) {
+      resolveLatest(window.location.hash);
+    }
+
+    function getCurrentVersion() {
+      var hash = window.location.hash || '';
+      var match = hash.match(/#\/(v[\d.]+)\//);
+      return match ? match[1] : null;
+    }
+
+    window.$docsify = {
+      name: 'SwAN',
+      repo: 'https://github.com/Namalabs/SwAN',
+      homepage: 'README.md',
+      loadSidebar: true,
+      subMaxLevel: 2,
+      auto2top: true,
+      coverpage: '_coverpage.md',
+      onlyCover: false,
+      search: 'auto',
+      // When tagging v0.3.0+, update /latest/* to match versions.json["latest"].
+      alias: {
+        '/latest/(.*)': '/v0.2.0/$1',
+        '/latest': '/v0.2.0/',
+        '/v0.2.0/.*/_sidebar.md': '/v0.2.0/_sidebar.md',
+        '/v0.1.0/.*/_sidebar.md': '/v0.1.0/_sidebar.md',
+      },
+
+      plugins: [
+        function (hook) {
+          hook.mounted(function () {
+            fetch('versions.json')
+              .then(function (res) { return res.json(); })
+              .then(function (data) {
+                var sidebar = document.querySelector('.sidebar-nav');
+                if (!sidebar) return;
+                var currentVersion = getCurrentVersion();
+
+                var select = document.createElement('select');
+                select.className = 'version-select';
+                select.setAttribute('aria-label', 'Documentation version');
+
+                var placeholder = document.createElement('option');
+                placeholder.value = '';
+                placeholder.textContent = 'Select version';
+                placeholder.disabled = true;
+                placeholder.selected = !currentVersion;
+                select.appendChild(placeholder);
+
+                data.versions.forEach(function (v) {
+                  var opt = document.createElement('option');
+                  opt.value = v;
+                  opt.textContent = v + (v === data.latest ? ' (latest)' : '');
+                  if (v === currentVersion) {
+                    opt.selected = true;
+                  }
+                  select.appendChild(opt);
+                });
+
+                select.addEventListener('change', function () {
+                  if (!select.value) return;
+                  window.location.hash = '#/' + select.value + '/';
+                });
+
+                sidebar.parentNode.insertBefore(select, sidebar);
+              });
+          });
+
+          hook.beforeEach(function (content) {
+            if (window.location.hash.indexOf('#/latest') === 0) {
+              resolveLatest(window.location.hash);
+            }
+            return content;
+          });
+        }
+      ]
+    };
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-swift.min.js"></script>
+</body>
+</html>

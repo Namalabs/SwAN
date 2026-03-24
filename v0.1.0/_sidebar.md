@@ -1,0 +1,2 @@
+- [⚠️ v0.1.0 (Deprecated)](/v0.1.0/)
+- [Go to Latest Version](/latest/)
