@@ -1,6 +1,9 @@
 # SwAN — SwiftUI Advanced Navigation
 
-Swift 6.2 · iOS 17+ · macOS 14+ · [Binary license](LICENSE)
+![Swift 6.2](https://img.shields.io/badge/Swift-6.2-orange)
+![iOS 17+](https://img.shields.io/badge/iOS-17%2B-blue)
+![macOS 14+](https://img.shields.io/badge/macOS-14%2B-blue)
+![License: Binary use only](https://img.shields.io/badge/License-Binary%20use%20only-lightgrey)
 
 `SwAN` is a type-safe, architecture-agnostic navigation library for SwiftUI. Instead of prescribing how you structure your app, it gives you a single `NavigationEngine` — one object that owns all navigation state and works wherever you put it: a plain `@State`, an `@Observable` model, a coordinator, or anything in between.
 
