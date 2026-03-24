@@ -1,0 +1,42 @@
+SwAN Binary Software License
+
+Copyright (c) 2026 the SwAN copyright holders. All rights reserved.
+
+1. Grant of license
+
+You may use the SwAN precompiled library (the “Software”) only in binary form,
+by linking it into your own applications (“Your Applications”). You may
+reproduce and distribute the Software solely as embedded in Your Applications
+to end users, in object code form only.
+
+2. What you do not receive
+
+No source code for the SwAN library is licensed, published, or provided under
+this agreement. Documentation files shipped alongside this package (for example
+Markdown in this repository) are provided for reference when using the public
+API; they do not grant any right to the implementation source of the library.
+
+3. Restrictions
+
+You may not, except to the extent applicable law prohibits such restriction:
+
+- modify, merge, or create derivative works of the Software’s binary except as
+  necessary to link it into Your Applications;
+- distribute the Software on a standalone basis (separate from Your
+  Applications);
+- remove or obscure any proprietary notices shipped with the Software;
+- reverse engineer, decompile, or disassemble the Software.
+
+4. No warranty
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING
+FROM YOUR USE OF THE SOFTWARE.
+
+5. Termination
+
+Your rights under this license terminate automatically if you breach it.
+
+For licensing questions or alternate terms, contact the copyright holders.

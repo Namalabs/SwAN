@@ -2,7 +2,7 @@
 
 > ⚠️ **This version is deprecated.** The documentation below is preserved for reference. New projects should use the latest version.
 
-👉 [Latest docs (v0.2.0)](/latest/) — see [Overview](/v0.2.0/overview.md) there.
+👉 [Latest docs (v0.3.0)](/latest/) — see [Overview](/v0.3.0/overview.md) there.
 
 ---
 

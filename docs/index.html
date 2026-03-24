@@ -76,13 +76,13 @@
       return fetch('versions.json')
         .then(function (res) { return res.json(); })
         .then(function (data) {
-          var latest = data.latest || 'v0.2.0';
+          var latest = data.latest || 'v0.3.0';
           if (hash && hash.indexOf('#/latest') === 0) {
             window.location.hash = hash.replace('#/latest', '#/' + latest);
           }
           return latest;
         })
-        .catch(function () { return 'v0.2.0'; });
+        .catch(function () { return 'v0.3.0'; });
     }
 
     if (window.location.hash.indexOf('#/latest') === 0) {
@@ -98,6 +98,12 @@
     window.$docsify = {
       name: 'SwAN',
       repo: 'https://github.com/Namalabs/SwAN',
+      // GitHub Pages project site lives under /SwAN/; local `docsify serve` uses /
+      basePath: (function () {
+        var h = window.location.hostname;
+        if (!h || h === 'localhost' || h === '127.0.0.1') return '/';
+        return '/SwAN/';
+      })(),
       homepage: 'README.md',
       loadSidebar: true,
       subMaxLevel: 2,
@@ -105,10 +111,10 @@
       coverpage: '_coverpage.md',
       onlyCover: false,
       search: 'auto',
-      // When tagging v0.3.0+, update /latest/* to match versions.json["latest"].
       alias: {
-        '/latest/(.*)': '/v0.2.0/$1',
-        '/latest': '/v0.2.0/',
+        '/latest/(.*)': '/v0.3.0/$1',
+        '/latest': '/v0.3.0/',
+        '/v0.3.0/.*/_sidebar.md': '/v0.3.0/_sidebar.md',
         '/v0.2.0/.*/_sidebar.md': '/v0.2.0/_sidebar.md',
         '/v0.1.0/.*/_sidebar.md': '/v0.1.0/_sidebar.md',
       },

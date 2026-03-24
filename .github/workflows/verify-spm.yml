@@ -1,0 +1,21 @@
+# Resolves the binary Swift package (downloads the release zip and verifies checksum).
+# Requires an existing GitHub Release v0.3.0 with asset SwAN.xcframework.zip matching Package.swift.
+name: Verify Swift package
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  resolve:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Swift version
+        run: swift --version
+
+      - name: Resolve package
+        run: swift package resolve

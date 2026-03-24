@@ -6,4 +6,4 @@ Start with **[Overview](/v0.2.0/overview.md)** or jump straight to **[Getting st
 
 Full index (paths + site links): [Documentation README](../README.md)
 
-Hosted: [GitHub Pages](https://namalabs.github.io/SwAN/) · Repo: [Namalabs/SwAN](https://github.com/Namalabs/SwAN)
+Docs: [namalabs.github.io/SwAN](https://namalabs.github.io/SwAN/) · Repo: [Namalabs/SwAN](https://github.com/Namalabs/SwAN)
