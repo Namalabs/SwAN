@@ -48,13 +48,14 @@ Most SwiftUI navigation libraries fall into one of two camps: lightweight wrappe
 
 ## Installation
 
-**Xcode:** *File > Add Package Dependencies...* and paste **this distribution repository** URL (adjust org/repo if yours differs):
+**Xcode (recommended for easier setup):**
+Open *File > Add Package Dependencies...* and paste this URL:
 
 ```
 https://github.com/Namalabs/SwAN.git
 ```
 
-**Package.swift:**
+**Package.swift (manual setup):**
 
 ```swift
 dependencies: [
