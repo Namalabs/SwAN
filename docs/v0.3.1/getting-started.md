@@ -6,15 +6,13 @@ iOS 17+, macOS 14+, Swift 6.2+, Xcode 16+.
 
 ## Add the package
 
-The **public binary** is released as **0.3.1** (see the repo root `Package.swift`). Use that version in your app even when reading these v0.2.0 docs.
-
 **Package.swift**
 
 ```swift
 .package(url: "https://github.com/Namalabs/SwAN.git", from: "0.3.1")
 ```
 
-**Xcode:** *File → Add Package Dependencies…* → paste the repo URL.
+**Xcode:** *File → Add Package Dependencies...* → paste the repo URL.
 
 ---
 
@@ -34,7 +32,7 @@ enum AppMenu: MenuIdentifiable {
 }
 ```
 
-`Routable` = `Hashable`, `Sendable`, `Codable`.  
+`Routable` = `Hashable`, `Sendable`, `Codable`.
 `MenuIdentifiable` already includes `CaseIterable` — the engine creates an empty stack per menu case at init.
 
 Avoid `enum Route: String, Routable` — you lose associated values and type safety.
@@ -73,7 +71,7 @@ struct ContentView: View {
 
 ## `push` vs `navigate(to:)`
 
-Use **`push`** when the decision is already valid (e.g. after your own check). Use **`navigate(to:)`** when **middleware** should run (auth, feature flags, …).
+Use **`push`** when the decision is already valid (e.g. after your own check). Use **`navigate(to:)`** when **middleware** should run (auth, feature flags, ...).
 
 ```swift
 engine.push(.detail(id: "1"))        // no middleware
@@ -98,7 +96,7 @@ TabView(selection: Binding(
 }
 ```
 
-Full pattern (including modals): [Navigation — TabView](/v0.2.0/navigation.md#tabview).
+Full pattern (including modals): [Navigation — TabView](/v0.3.1/navigation.md#tabview).
 
 ---
 
@@ -107,10 +105,8 @@ Full pattern (including modals): [Navigation — TabView](/v0.2.0/navigation.md#
 **Modal** (engine + SwiftUI):
 
 ```swift
-// Somewhere user taps
 engine.present(.settings, as: .sheet)
 
-// On root view
 ContentView()
     .modalPresenter(engine: engine) { route in
         switch route {
@@ -120,11 +116,20 @@ ContentView()
     }
 ```
 
-**Deep link** (outline): implement `DeepLinkParser`, `configurePipeline`, then `onOpenURL` → `engine.handle(url:)`. Step-by-step: [Presentation & deep links](/v0.2.0/presentation-and-links.md).
+**Modal with detents** (new in 0.3.0):
+
+```swift
+engine.present(.settings, configuration: ModalConfiguration(
+    detents: [.medium, .large],
+    selectedDetent: .medium
+))
+```
+
+**Deep link** (outline): implement `DeepLinkParser`, `configurePipeline`, then `onOpenURL` → `engine.handle(url:)`. Step-by-step: [Presentation & deep links](/v0.3.1/presentation-and-links.md).
 
 ---
 
 ## Next
 
-- Skipped the big picture? [Overview](/v0.2.0/overview.md)  
-- Stacks & middleware in depth: [Navigation](/v0.2.0/navigation.md)
+- Skipped the big picture? [Overview](/v0.3.1/overview.md)
+- Stacks & middleware in depth: [Navigation](/v0.3.1/navigation.md)

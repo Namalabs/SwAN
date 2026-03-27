@@ -5,6 +5,12 @@ All notable changes to SwAN will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] — 2026-03-27
+
+### Fixed (distribution)
+
+- **Binary Swift package:** new immutable tag `0.3.1` with updated `SwAN.xcframework.zip` and checksum so SwiftPM/Xcode resolve cleanly after retagging `0.3.0`. No library API changes.
+
 ## [0.3.0] — 2026-03-24
 
 ### Added

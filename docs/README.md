@@ -29,7 +29,7 @@ engine.navigate(to: .settings)       // guarded (runs middleware)
 
 ## Documentation
 
-- **Latest:** [v0.3.0](/v0.3.0/)
+- **Latest:** [v0.3.1](/v0.3.1/)
 - **Repo:** [github.com/Namalabs/SwAN](https://github.com/Namalabs/SwAN)
 
 ## Requirements

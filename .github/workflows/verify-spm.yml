@@ -1,5 +1,5 @@
 # Resolves the binary Swift package (downloads the release zip and verifies checksum).
-# Requires an existing GitHub Release v0.3.0 with asset SwAN.xcframework.zip matching Package.swift.
+# Requires an existing GitHub Release 0.3.1 with asset SwAN.xcframework.zip matching Package.swift.
 name: Verify Swift package
 
 on:

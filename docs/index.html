@@ -76,13 +76,13 @@
       return fetch('versions.json')
         .then(function (res) { return res.json(); })
         .then(function (data) {
-          var latest = data.latest || 'v0.3.0';
+          var latest = data.latest || 'v0.3.1';
           if (hash && hash.indexOf('#/latest') === 0) {
             window.location.hash = hash.replace('#/latest', '#/' + latest);
           }
           return latest;
         })
-        .catch(function () { return 'v0.3.0'; });
+        .catch(function () { return 'v0.3.1'; });
     }
 
     if (window.location.hash.indexOf('#/latest') === 0) {
@@ -112,8 +112,9 @@
       onlyCover: false,
       search: 'auto',
       alias: {
-        '/latest/(.*)': '/v0.3.0/$1',
-        '/latest': '/v0.3.0/',
+        '/latest/(.*)': '/v0.3.1/$1',
+        '/latest': '/v0.3.1/',
+        '/v0.3.1/.*/_sidebar.md': '/v0.3.1/_sidebar.md',
         '/v0.3.0/.*/_sidebar.md': '/v0.3.0/_sidebar.md',
         '/v0.2.0/.*/_sidebar.md': '/v0.2.0/_sidebar.md',
         '/v0.1.0/.*/_sidebar.md': '/v0.1.0/_sidebar.md',

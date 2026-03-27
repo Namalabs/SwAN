@@ -58,11 +58,9 @@ https://github.com/Namalabs/SwAN.git
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/Namalabs/SwAN.git", from: "0.3.0")
+    .package(url: "https://github.com/Namalabs/SwAN.git", from: "0.3.1")
 ]
 ```
-
-SPM uses the `binaryTarget` in this repo’s `Package.swift`, which points at the **v0.3.0** release asset **`SwAN.xcframework.zip`**. Create that release on [Namalabs/SwAN](https://github.com/Namalabs/SwAN) after building the zip in your private repo (**maintainers:** see **`RELEASE_GUIDE.md`** at the root of the **private** SwAN source repository—this file is not shipped here). Until the asset is uploaded, `swift package resolve` and CI **Verify Swift package** will fail with a 404 — that is expected.
 
 ## Getting Started
 
@@ -256,8 +254,8 @@ await engine.navigate(loading: .loading) {
 
 Full guides, cookbook, and API-oriented pages:
 
-- **[Live docs (latest)](https://namalabs.github.io/SwAN/#/v0.3.0/)** — GitHub Pages from this repo’s `docs/` folder (see `.github/workflows/deploy-pages.yml`)
-- **[v0.3.0 docs](/docs/v0.3.0/)** — overview, getting started, navigation, presentation, advanced, cookbook, API reference
+- **[Live docs (latest)](https://namalabs.github.io/SwAN/#/v0.3.1/)** — GitHub Pages from this repo’s `docs/` folder (see `.github/workflows/deploy-pages.yml`)
+- **[v0.3.1 docs](/docs/v0.3.1/)** — overview, getting started, navigation, presentation, advanced, cookbook, API reference
 - **Swift Package Index** — SPI primarily documents **source** packages; for this **binary** package, prefer **`docs/`** and Xcode as above.
 
 Run Docsify locally (from the root of **this** repository, where `docs/` lives):
@@ -268,7 +266,8 @@ npx docsify-cli serve docs
 
 | Version | Link |
 |:---|:---|
-| v0.3.0 (latest) | [docs/v0.3.0](/docs/v0.3.0/) |
+| v0.3.1 (latest) | [docs/v0.3.1](/docs/v0.3.1/) |
+| v0.3.0 | [docs/v0.3.0](/docs/v0.3.0/) |
 | v0.2.0 | [docs/v0.2.0](/docs/v0.2.0/) |
 | v0.1.0 | [docs/v0.1.0](/docs/v0.1.0/) |
 
