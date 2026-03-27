@@ -2,5 +2,5 @@
 
 > Swift Navigation Library | Type-safe multi-stack navigation for SwiftUI Development
 
-[Getting started](/README.md)
+[Getting started](/v0.3.1/getting-started.md)
 [GitHub](https://github.com/Namalabs/SwAN)
