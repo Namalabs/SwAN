@@ -122,6 +122,8 @@
 
       plugins: [
         function (hook) {
+          var versionSelect = null;
+
           hook.mounted(function () {
             fetch('versions.json')
               .then(function (res) { return res.json(); })
@@ -157,12 +159,17 @@
                 });
 
                 sidebar.parentNode.insertBefore(select, sidebar);
+                versionSelect = select;
               });
           });
 
           hook.beforeEach(function (content) {
             if (window.location.hash.indexOf('#/latest') === 0) {
               resolveLatest(window.location.hash);
+            }
+            if (versionSelect) {
+              var v = getCurrentVersion();
+              versionSelect.value = v || '';
             }
             return content;
           });
