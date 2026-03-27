@@ -3,20 +3,75 @@
 name: Verify Swift package
 
 on:
+  push:
+    branches: master
   workflow_dispatch:
 
 jobs:
   resolve:
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
       - uses: actions/checkout@v4
 
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: "26.3"
+          xcode-version: "26.4"
 
       - name: Swift version
         run: swift --version
 
       - name: Resolve package
         run: swift package resolve
+
+      - name: Smoke test import SwAN (macOS + iOS simulator)
+        run: |
+          mkdir -p .ci-smoke/Sources/SmokeImport
+          cat > .ci-smoke/Package.swift <<'EOF'
+          // swift-tools-version: 6.2
+          import PackageDescription
+
+          let package = Package(
+              name: "SmokeImport",
+              platforms: [
+                  .iOS(.v26),
+                  .macOS(.v26),
+              ],
+              dependencies: [
+                  .package(path: "../"),
+              ],
+              targets: [
+                  .target(
+                      name: "SmokeImport",
+                      dependencies: [
+                          .product(name: "SwAN", package: "SwAN"),
+                      ]
+                  ),
+              ]
+          )
+          EOF
+
+          cat > .ci-smoke/Sources/SmokeImport/SmokeImport.swift <<'EOF'
+          import SwAN
+
+          public enum SmokeImportProbe {
+              public static func validate() {}
+          }
+          EOF
+
+          IOS_SDK_VERSION="$(xcrun --sdk iphonesimulator --show-sdk-version)"
+          MACOS_SDK_VERSION="$(xcrun --sdk macosx --show-sdk-version)"
+
+          echo "Using iOS simulator SDK: ${IOS_SDK_VERSION}"
+          echo "Using macOS SDK: ${MACOS_SDK_VERSION}"
+
+          echo "Building smoke target for latest macOS SDK"
+          swift build \
+            --package-path .ci-smoke \
+            --triple "arm64-apple-macos${MACOS_SDK_VERSION}" \
+            -v
+
+          echo "Building smoke target for latest iOS simulator SDK"
+          swift build \
+            --package-path .ci-smoke \
+            --triple "arm64-apple-ios${IOS_SDK_VERSION}-simulator" \
+            -v

@@ -21,7 +21,7 @@ let package = Package(
         .binaryTarget(
             name: "SwAN",
             url: "https://github.com/Namalabs/SwAN/releases/download/0.3.0/SwAN.xcframework.zip",
-            checksum: "3f20740260c0dc2944e786b40b22f6ca1cb19014157a3b8c83edfa740a6ff900"
+            checksum: "bcfa9679ade12a6eab4ba7838fed3cff8077434df3637a8c43dad25882409a3c"
         ),
     ]
 )
