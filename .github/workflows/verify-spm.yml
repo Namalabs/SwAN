@@ -21,7 +21,11 @@ jobs:
         run: swift --version
 
       - name: Resolve package
-        run: swift package resolve
+        run: |
+          rm -rf ~/.swiftpm/cache/artifacts
+          rm -rf ~/Library/Caches/org.swift.swiftpm/artifacts
+          swift package reset || true
+          swift package resolve
 
       - name: Smoke test import SwAN (macOS + iOS simulator)
         run: |
@@ -60,6 +64,11 @@ jobs:
 
           IOS_SDK_VERSION="$(xcrun --sdk iphonesimulator --show-sdk-version)"
           MACOS_SDK_VERSION="$(xcrun --sdk macosx --show-sdk-version)"
+
+          rm -rf .ci-smoke/.build
+          rm -rf ~/.swiftpm/cache/artifacts
+          rm -rf ~/Library/Caches/org.swift.swiftpm/artifacts
+          swift package reset --package-path .ci-smoke || true
 
           echo "Using iOS simulator SDK: ${IOS_SDK_VERSION}"
           echo "Using macOS SDK: ${MACOS_SDK_VERSION}"
