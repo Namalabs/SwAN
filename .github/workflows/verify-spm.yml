@@ -64,6 +64,8 @@ jobs:
 
           IOS_SDK_VERSION="$(xcrun --sdk iphonesimulator --show-sdk-version)"
           MACOS_SDK_VERSION="$(xcrun --sdk macosx --show-sdk-version)"
+          IOS_SDK_PATH="$(xcrun --sdk iphonesimulator --show-sdk-path)"
+          MACOS_SDK_PATH="$(xcrun --sdk macosx --show-sdk-path)"
 
           rm -rf .ci-smoke/.build
           rm -rf ~/.swiftpm/cache/artifacts
@@ -77,10 +79,12 @@ jobs:
           swift build \
             --package-path .ci-smoke \
             --triple "arm64-apple-macos${MACOS_SDK_VERSION}" \
+            --sdk "${MACOS_SDK_PATH}" \
             -v
 
           echo "Building smoke target for latest iOS simulator SDK"
           swift build \
             --package-path .ci-smoke \
             --triple "arm64-apple-ios${IOS_SDK_VERSION}-simulator" \
+            --sdk "${IOS_SDK_PATH}" \
             -v
