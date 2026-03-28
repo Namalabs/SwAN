@@ -5,3 +5,4 @@
 - [Advanced](/v0.3.1/advanced.md)
 - [Cookbook](/v0.3.1/cookbook.md)
 - [API reference](/v0.3.1/api.md)
+- [Changelog](/v0.3.1/changelog.md)

@@ -7,11 +7,16 @@
   <meta name="description" content="Type-safe multi-stack navigation for SwiftUI Development" />
   <!-- Docsify built-in theme (includes default search panel styling) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css" />
+  <!-- Public binary release docs: lighter sky-blue accent -->
   <style>
     :root {
-      --app-bg: #f6f8fb;
+      --docs-accent: #38bdf8;
+      --docs-accent-muted: #0ea5e9;
+      --docs-accent-soft: #e0f2fe;
+      --app-bg: #f0f9ff;
       --app-surface: #ffffff;
-      --app-text: #1f2937;
+      --app-text: #1e293b;
+      --docs-border-muted: #bae6fd;
     }
 
     body {
@@ -23,26 +28,92 @@
       background: var(--app-surface);
     }
 
+    .app-name-link:hover {
+      color: var(--docs-accent-muted);
+    }
+
+    .sidebar-nav li.active > a,
+    .sidebar-nav ul > li.active > a {
+      color: var(--docs-accent-muted) !important;
+      font-weight: 600;
+      border-left-color: var(--docs-accent-muted) !important;
+    }
+
+    .sidebar-nav ul > li > a:hover,
+    .sidebar-nav li > a:hover {
+      color: var(--docs-accent-muted) !important;
+    }
+
+    .sidebar-nav h2 {
+      margin: 1.35rem 0 0.5rem;
+      padding: 0.65rem 1rem 0.35rem;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #64748b;
+      border-top: 1px solid var(--docs-border-muted);
+    }
+
+    .sidebar-nav h2:first-of-type {
+      margin-top: 0.75rem;
+    }
+
     .markdown-section {
       color: var(--app-text);
     }
 
-    /* Version dropdown (injected by plugin) */
+    .markdown-section a {
+      color: var(--docs-accent-muted);
+    }
+
+    .markdown-section a:hover {
+      color: var(--docs-accent);
+    }
+
+    .markdown-section .anchor span {
+      color: var(--docs-accent-muted);
+    }
+
+    .markdown-section h1 .anchor span,
+    .markdown-section h2 .anchor span,
+    .markdown-section h3 .anchor span,
+    .markdown-section h4 .anchor span {
+      color: var(--docs-accent-muted);
+    }
+
+    .pagination-nav a:hover .pagination-nav-title {
+      color: var(--docs-accent-muted);
+    }
+
     .version-select {
       margin: 0.75rem 1rem 0.5rem;
       padding: 0.35rem 0.5rem;
       width: calc(100% - 2rem);
       font-size: 13px;
-      border: 1px solid #ddd;
+      border: 1px solid var(--docs-border-muted);
       border-radius: 4px;
       background: #fff;
       box-sizing: border-box;
     }
 
-    /* Softer search focus — keeps Docsify layout, tones down browser/theme glow */
+    .version-select:focus {
+      outline: none;
+      border-color: var(--docs-accent-muted);
+      box-shadow: 0 0 0 2px var(--docs-accent-soft);
+    }
+
     .sidebar .search input:focus {
       outline: none;
-      box-shadow: inset 0 0 0 1px #42b983;
+      box-shadow: inset 0 0 0 1px var(--docs-accent-muted);
+    }
+
+    .sidebar .search .matching-post {
+      border-color: var(--docs-accent-soft);
+    }
+
+    .sidebar .search .matching-post:hover {
+      border-color: var(--docs-accent-muted);
     }
 
     .sidebar .search .clear-button {
@@ -51,20 +122,44 @@
 
     .sidebar .search .clear-button:hover {
       opacity: 1;
+      color: var(--docs-accent-muted);
     }
 
-    /* Cover: keep same background family for readability */
-    section.cover {
-      background: var(--app-bg);
+    /* section.cover {
+      background: linear-gradient(165deg, var(--docs-accent-soft) 0%, var(--app-bg) 45%, #fff 100%);
       color: var(--app-text);
       background-attachment: fixed;
-    }
+    } */
 
     section.cover .cover-main > p:last-child a {
       border-radius: 2rem;
       padding: 0.5rem 1.25rem;
       margin-right: 0.5rem;
-      color: #1f2937;
+      border: 2px solid var(--docs-accent-muted);
+      color: var(--docs-accent-muted);
+      background: #fff;
+    }
+
+    section.cover .cover-main > p:last-child a:hover {
+      background: var(--docs-accent-muted);
+      color: #fff;
+    }
+
+    .github-corner svg {
+      fill: var(--docs-accent-muted);
+    }
+
+    .sidebar-toggle {
+      background-color: transparent;
+    }
+
+    .sidebar-toggle span {
+      background: var(--docs-accent-muted);
+    }
+
+    .markdown-section blockquote {
+      border-left: 4px solid var(--docs-accent-soft);
+      color: #475569;
     }
   </style>
 </head>
@@ -98,6 +193,7 @@
     window.$docsify = {
       name: 'SwAN',
       repo: 'https://github.com/Namalabs/SwAN',
+      themeColor: '#0ea5e9',
       // GitHub Pages project site lives under /SwAN/; local `docsify serve` uses /
       basePath: (function () {
         var h = window.location.hostname;
